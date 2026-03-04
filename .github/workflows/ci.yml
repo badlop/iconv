@@ -27,8 +27,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        apt-get -qq update
-        apt-get -qq install pipx
         pipx install cpp-coveralls
         /github/home/.local/bin/cpp-coveralls -b `pwd` --verbose --gcov-options '\-lp' --dump c.json
         ADDJSONFILE=c.json COVERALLS=true rebar3 as test coveralls send
